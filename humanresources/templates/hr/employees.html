@@ -1,0 +1,59 @@
+{% extends 'hr/login.html' %}
+
+
+{% block content %}
+    <div class="container pt-3 text-center">
+        <h2 class="pb-3">Base de Empleados</h2>
+        <form method="get" class="pb-4">
+            <label for="idnumber">Número Nacional:</label>
+            <input type="number" name="idnumber" placeholder="Número nacional" value="{{ idnumber }}">
+            <label for="start_date">Fecha Inicio:</label>
+            <input type="date" name="start_date" value="{{start_date}}">
+            <label for="end_date">Fecha Termino:</label>
+            <input type="date" name="end_date" value="{{end_date}}">
+            <button type="submit" class="btn btn-secondary">Filtrar</button>
+        </form>
+            {% if employees %}
+                <table class="table table-dark table-hover">
+                    <tr class="fw-light">
+                        <th>BusinessEntityid</th>
+                        <th>NationalidNumber</th>
+                        <th>Job Title</th>
+                        <th>Hire Date</th>
+                        <th>Vacation Hours</th>
+                    </tr>
+                {% for employee in employees %}
+                    <tr>
+                        <td>{{employee.businessentityid.businessentityid}}</td>
+                        <td>{{employee.nationalidnumber}}</td>
+                        <td>{{employee.jobtitle}}</td>
+                        <td>{{employee.hiredate}}</td>
+                        <td>{{employee.vacationhours}}</td>
+                    </tr>
+                {% endfor %}
+                </table>
+            {% else %}
+                <table class="table table-dark table-hover">
+                    <tr>
+                        <th>BusinessEntityid</th>
+                        <th>NationalidNumber</th>
+                        <th>Job Title</th>
+                        <th>Hire Date</th>
+                        <th>Vacation Hours</th>
+                    </tr>
+                {% for employee in employees %}
+                    <tr>
+                        <td>{{employee.businessentityid.businessentityid}}</td>
+                        <td>{{employee.nationalidnumber}}</td>
+                        <td>{{employee.jobtitle}}</td>
+                        <td>{{employee.hiredate}}</td>
+                        <td>{{employee.vacationhours}}</td>
+                    </tr>
+                {% endfor %}
+                </table>
+            {% endif %}
+
+        
+    </div>
+{% endblock content %}
+    

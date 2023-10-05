@@ -1,0 +1,28 @@
+{% extends 'hr/login.html' %}
+
+
+{% block content %}
+    {% load crispy_forms_tags %}
+    <div class="row justify-content-center pt-1">
+        <div class="col-lg-8">
+            <div class="card">
+                <h5 class="card-header text-center">Register Human Resources</h5>
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ register_form|crispy }}
+                        <button class="btn btn-secondary" type="submit">Register</button>
+                    </form>
+                    <br>
+                    <p>Si actualmente tienes una cuenta, inicia tu sesión <a href="/login/">aquí</a>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+{% endblock content %}

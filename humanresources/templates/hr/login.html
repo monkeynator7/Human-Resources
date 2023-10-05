@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
+    {% bootstrap_messages %} {% load static %}
+    <title>Human Resources</title>
+</head>
+
+<body style="background-color: rgb(246,246,246);">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Human Resources</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/employees/">Empleados</a>
+                    </li>
+                </ul>      
+                <ul class="navbar-nav ml-auto">
+                    
+                    {% if user.is_authenticated %} 
+                    <li class="nav-item d-flex align-items-center">
+                        <a class="nav-link active me-2" href="/logout/">Logout</a>
+                        <span class="text-light pe-3">Bienvenido {{ user.username }}!</span>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/login/">Login</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% block content %}
+    {% load crispy_forms_tags %}
+    <div class="row justify-content-center pt-5">
+        <div class="col-sm-4">
+            <div class="card">
+                <h5 class="card-header text-center">Login Human Resources</h5>
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ login_form|crispy }}
+                        <button class="btn btn-secondary" type="submit">Login</button>
+                    </form>
+                    <br>
+                    <p>Si no tienes una cuenta, registrate <a  class="fst-italic text-decoration-none text-dark" href="/register/">aquí</a>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    {% endblock content %}
+
+</body>
+
+</html>
